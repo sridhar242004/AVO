@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVOW - Elite Event Management & Digital Marketing</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+      
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        .text-shadow { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+        .underline-animation {
+            position: relative;
+        }
+        .underline-animation:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #FBBF24;
+            transition: width 0.3s ease;
+        }
+        .underline-animation:hover:after {
+            width: 100%;
+        }
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #FBBF24;
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.2s ease;
+        }
+        .custom-shape {
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+        }
+        .custom-shape {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .premium-gradient {
+            background: linear-gradient(135deg, #111111 0%, #2a2a2a 100%);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service-card {
+            transition: all 0.4s ease;
+            border: 1px solid #333;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .service-card:hover {
+            border-color: #ffd700;
+            background: rgba(0, 0, 0, 0.9);
+            transform: translateY(-5px);
+        }
+        
+        .pie-menu {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 600px;
+            margin: 0 auto;
+        }
+        
+        .menu-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+        
+        .menu-item {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        
+        .menu-item.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .menu-item i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .underline-animation {
+            position: relative;
+        }
+        
+        .underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+        
+        .underline-animation:hover::after {
+            width: 100%;
+        }
+        
+        .event-card {
+            overflow: hidden;
+        }
+        
+        .event-card img {
+            transition: transform 0.6s ease;
+        }
+        
+        .event-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        #progress-bar {
+            height: 4px;
+            background-color: #ffd700;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.2s ease;
+        }
+        
+        .sticky-nav {
+            backdrop-filter: blur(10px);
+        }
+        
+    body {
+        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        color: var(--black);
+      }
+      
+      .services-section {
+        padding: 80px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+      }
+      
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--black);
+        position: relative;
+        padding-bottom: 15px;
+      }
+      
+      .section-title:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background-color: var(--yellow);
+      }
+      
+      .compass-container {
+        position: relative;
+        width: 100%;
+        height: 700px;
+        margin: 0 auto;
+        max-width: 700px;
+      }
+      
+      .center-circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background: var(--yellow);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        border: 6px solid rgba(255, 255, 255, 0.8);
+      }
+      
+      .center-circle:before {
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        right: -15px;
+        bottom: -15px;
+        border-radius: 50%;
+        border: 2px dashed rgba(255, 204, 0, 0.5);
+        animation: rotate 60s linear infinite;
+        pointer-events: none;
+      }
+      
+      @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      
+      .logo-text {
+        font-weight: 900;
+        font-size: 28px;
+        letter-spacing: 1px;
+        color: var(--black);
+        text-shadow: 1px 1px 0 rgba(255,255,255,0.3);
+      }
+      
+      .service-item {
+        position: absolute;
+        width: 130px;
+        height: 130px;
+        background: var(--black);
+        color: white;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 15px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        z-index: 5;
+      }
+      
+      .service-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        background: linear-gradient(135deg, #222, #000);
+      }
+      
+      .service-icon {
+        font-size: 32px;
+        margin-bottom: 12px;
+        color: var(--yellow);
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .service-title {
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 1.3;
+        margin: 0;
+      }
+      
+      /* Connection lines */
+      .connection-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+      
+      .connection-line {
+        stroke: var(--yellow);
+        stroke-width: 2;
+        stroke-dasharray: 5;
+        filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
+      }
+      
+      /* Service item positions - placed in a circular pattern */
+      .item-1 {
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .item-2 {
+        top: 18%;
+        left: 12%;
+      }
+      .item-3 {
+        top: 18%;
+        right: 12%;
+      }
+      .item-4 {
+        top: 40%;
+        left: 5%;
+      }
+      .item-5 {
+        top: 40%;
+        right: 5%;
+      }
+      .item-6 {
+        bottom: 30%;
+        left: 8%;
+      }
+      .item-7 {
+        bottom: 30%;
+        right: 8%;
+      }
+      .item-8 {
+        bottom: 12%;
+        left: 22%;
+      }
+      .item-9 {
+        bottom: 12%;
+        right: 22%;
+      }
+      .item-10 {
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      /* Pulse animation for service items */
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+      
+      /* Mobile responsiveness */
+      @media (max-width: 768px) {
+        .compass-container {
+          height: auto;
+          margin-top: 80px;
+        }
+        
+        .center-circle {
+          position: relative;
+          top: 0;
+          left: 0;
+          transform: none;
+          margin: 0 auto 50px;
+        }
+        
+        .service-item {
+          position: relative;
+          top: unset !important;
+          left: unset !important;
+          right: unset !important;
+          bottom: unset !important;
+          transform: none !important;
+          margin: 15px auto;
+          width: 160px;
+          height: 160px;
+        }
+        
+        .service-icon {
+          font-size: 38px;
+        }
+        
+        .service-title {
+          font-size: 15px;
+        }
+        
+        .connection-container {
+          display: none;
+        }
+      }
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+.clientele-showcase {
+  background: linear-gradient(45deg, #111111 0%, #222222 100%);
+  padding: 6rem 1rem;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.clientele-showcase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/api/placeholder/1920/1080') center/cover;
+  opacity: 0.1;
+  mix-blend-mode: overlay;
+}
+
+.showcase-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.showcase-header {
+  text-align: center;
+  margin-bottom: 5rem;
+  position: relative;
+}
+
+.showcase-title {
+  font-size: 3.5rem;
+  color: #FFD700;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 4px;
+  position: relative;
+  display: inline-block;
+}
+
+.showcase-title::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #FFD700, transparent);
+}
+
+.industry-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  padding: 2rem;
+}
+
+.industry-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.industry-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), transparent);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.industry-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.industry-card:hover::before {
+  opacity: 1;
+}
+
+.industry-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1.5rem;
+  border-radius: 50%;
+  background: #FFD700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.industry-icon img {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+
+.industry-title {
+  color: #FFD700;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.industry-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: #FFD700;
+  transition: width 0.3s ease;
+}
+
+.industry-card:hover .industry-title::after {
+  width: 100px;
+}
+
+.client-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+
+.client-item {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.client-item:hover {
+  background: rgba(255, 215, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+.client-logo {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.client-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.client-item:hover .client-logo img {
+  transform: scale(1.1);
+}
+
+.client-name {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.client-item:hover .client-name {
+  color: #FFD700;
+}
+
+/* Floating animation for cards */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.industry-card {
+  animation: float 6s ease-in-out infinite;
+}
+
+.industry-card:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.industry-card:nth-child(3) {
+  animation-delay: 2s;
+}
+
+.industry-card:nth-child(4) {
+  animation-delay: 3s;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .showcase-title {
+    font-size: 3rem;
+  }
+  
+  .industry-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .showcase-title {
+    font-size: 2.5rem;
+  }
+  
+  .industry-container {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  
+  .industry-card {
+    padding: 2rem;
+  }
+  
+  .client-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .showcase-title {
+    font-size: 2rem;
+  }
+  
+  .client-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        
+    </style>
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <header>
+        <nav id="main-nav" class="fixed w-full z-50 transition-all duration-300 bg-black/70 backdrop-blur-sm border-b border-yellow-500/20">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16 md:h-20">
+                    <!-- Logo -->
+                    <a href="Screenshot 2025-02-21 134616.png" class="flex items-center flex-shrink-0">
+                        <div class="relative h-10 w-10 md:h-12 md:w-12 bg-yellow-400 rounded-full overflow-hidden flex items-center justify-center">
+                            <span class="text-black text-xl md:text-2xl font-bold">A</span>
+                        </div>
+                        <span class="ml-2 text-yellow-400 text-xl md:text-2xl font-bold tracking-wider">AVOW</span>
+                    </a>
+                    
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center space-x-4 lg:space-x-8">
+                        <a href="#about" class="text-white hover:text-yellow-400 transition underline-animation text-sm lg:text-base">About</a>
+                        <a href="#services" class="text-white hover:text-yellow-400 transition underline-animation text-sm lg:text-base">Services</a>
+                        <a href="#events" class="text-white hover:text-yellow-400 transition underline-animation text-sm lg:text-base">Events</a>
+                        <a href="#what-we-do" class="text-white hover:text-yellow-400 transition underline-animation text-sm lg:text-base">What We Do</a>
+                        <a href="#contact" class="bg-yellow-500 text-black px-4 py-2 rounded-full hover:bg-yellow-400 transition text-sm lg:text-base font-medium">Contact Us</a>
+                    </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="menuBtn" aria-label="Open menu" class="md:hidden flex items-center p-2 text-yellow-400 hover:text-yellow-300 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="fixed inset-0 z-40 bg-black/98 transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="container mx-auto px-4 py-6 h-full flex flex-col">
+                <div class="flex justify-end">
+                    <button id="closeMenu" aria-label="Close menu" class="text-yellow-400 p-2 hover:text-yellow-300 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex flex-col items-center justify-center h-full space-y-8">
+                    <a href="#about" class="text-2xl text-white hover:text-yellow-400 mobile-link">About</a>
+                    <a href="#services" class="text-2xl text-white hover:text-yellow-400 mobile-link">Services</a>
+                    <a href="#events" class="text-2xl text-white hover:text-yellow-400 mobile-link">Events</a>
+                    <a href="#what-we-do" class="text-2xl text-white hover:text-yellow-400 mobile-link">What We Do</a>
+                    <a href="#contact" class="bg-yellow-500 text-black px-6 py-3 rounded-full hover:bg-yellow-400 transition mt-4 mobile-link text-xl font-medium">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="custom-shape h-screen bg-black relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-black/30 z-10"></div>
+        <div class="absolute inset-0">
+            <div class="relative h-full w-full overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1920&h=1080" alt="Premium Event" class="object-cover w-full h-full opacity-60">
+            </div>
+        </div>
+        <div class="absolute inset-0 bg-black/40 z-0"></div>
+        <div class="relative z-20 container mx-auto px-4 h-full flex items-center">
+            <div class="max-w-3xl" data-aos="fade-up" data-aos-delay="200">
+                <div class="inline-block px-4 py-1 border-l-4 border-yellow-400 bg-black/50 backdrop-blur-sm mb-6">
+                    <p class="text-yellow-400 font-medium">SINCE 2019</p>
+                </div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-shadow">Creating <span class="text-yellow-400">Unforgettable</span> Experiences</h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-2xl">Where Vision Meets Excellence in Event Management & Digital Marketing</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#services" class="bg-yellow-400 text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-yellow-300 transition flex items-center justify-center">
+                        <span>Explore Services</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#contact" class="border border-yellow-400 text-yellow-400 px-8 py-4 rounded-full text-lg font-semibold hover:bg-yellow-400/10 transition flex items-center justify-center">
+                        <span>Contact Us</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black to-transparent z-10"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 premium-gradient relative">
+        <div class="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black to-transparent"></div>
+        <div class="container mx-auto px-4 py-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" data-aos-delay="100">
+                    <div class="inline-block px-4 py-1 border-l-4 border-yellow-400 bg-black/20 mb-4">
+                        <p class="text-yellow-400 font-medium">ABOUT US</p>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Elevating <span class="text-yellow-400">Experiences</span> Since 2019</h2>
+                    <p class="text-gray-300 mb-6 text-lg">At AVOW, we specialize in digital marketing and event management, offering a comprehensive suite of services designed to elevate your brand and deliver impactful results.</p>
+                    <p class="text-gray-300 mb-6">Our dedicated team ensures that every project, from ideation to execution, is handled with precision and creativity. We bring a wealth of experience and a meticulous eye for detail to every event we manage.</p>
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="flex items-start">
+                            <div class="bg-yellow-400 rounded-full p-2 mr-4">
+                                <i class="fas fa-trophy text-black"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2">Experienced Team</h4>
+                                <p class="text-gray-400 text-sm">Skilled professionals with extensive experience</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-yellow-400 rounded-full p-2 mr-4">
+                                <i class="fas fa-check text-black"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2">Customized Solutions</h4>
+                                <p class="text-gray-400 text-sm">Tailored services for your specific needs</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-yellow-400 rounded-full p-2 mr-4">
+                                <i class="fas fa-eye text-black"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2">Attention to Detail</h4>
+                                <p class="text-gray-400 text-sm">Perfect execution of every aspect</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-yellow-400 rounded-full p-2 mr-4">
+                                <i class="fas fa-network-wired text-black"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2">Reliable Network</h4>
+                                <p class="text-gray-400 text-sm">Trusted vendors and partners</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left" data-aos-delay="200" class="relative">
+                    <div class="relative z-10 rounded-lg overflow-hidden shadow-2xl border border-yellow-500/20">
+                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&h=600" alt="About AVOW" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 w-48 h-48 bg-yellow-400/10 rounded-full blur-2xl z-0"></div>
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-yellow-400/10 rounded-full blur-xl z-0"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="relative min-h-screen bg-black overflow-hidden">
+        <!-- Premium animated background -->
+        <div class="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center opacity-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black"></div>
+    
+        <!-- Main content container -->
+        <div class="relative z-10 px-4 py-20">
+            <!-- Enhanced section header -->
+            <div class="container mx-auto mb-16 text-center">
+                <div class="inline-block px-6 py-2 mb-6 border-l-4 border-yellow-400 bg-black/50 backdrop-blur-sm">
+                    <p class="text-yellow-400 text-sm font-medium tracking-[0.2em]">OUR SERVICES</p>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-8">
+                    <span class="relative">
+                        Premium
+                        <span class="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400/50 to-transparent"></span>
+                    </span>
+                    <span class="text-yellow-400 ml-4">Solutions</span>
+                </h2>
+            </div>
+    
+            <!-- Horizontal scroll container -->
+            <div class="relative max-w-[95vw] mx-auto">
+                <!-- Scroll buttons - Hidden on mobile -->
+                <button class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-12 h-12 bg-black/80 backdrop-blur-sm border border-yellow-400/30 rounded-full items-center justify-center text-yellow-400 hover:bg-yellow-400/20 transition-all duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 w-12 h-12 bg-black/80 backdrop-blur-sm border border-yellow-400/30 rounded-full items-center justify-center text-yellow-400 hover:bg-yellow-400/20 transition-all duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+    
+                <!-- Scrollable content -->
+                <div class="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-6 hide-scrollbar">
+                    <!-- Event Management Card -->
+                    <div class="snap-center shrink-0 w-[85vw] md:w-[400px] rounded-2xl p-8 backdrop-blur-sm bg-gradient-to-b from-white/5 to-black/70 border border-white/10 hover:border-yellow-400/30 transition-all duration-500 group">
+                        <div class="bg-yellow-400/10 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-yellow-400/20 transition-all duration-300 group-hover:rotate-6">
+                            <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-yellow-400 group-hover:text-white transition-colors duration-300">Event Management</h3>
+                        <p class="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">From planning to execution, we manage all aspects of event coordination, including sponsorship outreach, logistics and on-site management.</p>
+                    </div>
+    
+                    <!-- Digital Marketing Card -->
+                    <div class="snap-center shrink-0 w-[85vw] md:w-[400px] rounded-2xl p-8 backdrop-blur-sm bg-gradient-to-b from-white/5 to-black/70 border border-white/10 hover:border-yellow-400/30 transition-all duration-500 group">
+                        <div class="bg-yellow-400/10 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-yellow-400/20 transition-all duration-300 group-hover:rotate-6">
+                            <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-yellow-400 group-hover:text-white transition-colors duration-300">Digital Marketing</h3>
+                        <p class="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">We create customized digital strategies, including social media management and content marketing campaigns, to enhance your brand's online presence.</p>
+                    </div>
+    
+                    <!-- Content Creation Card -->
+                    <div class="snap-center shrink-0 w-[85vw] md:w-[400px] rounded-2xl p-8 backdrop-blur-sm bg-gradient-to-b from-white/5 to-black/70 border border-white/10 hover:border-yellow-400/30 transition-all duration-500 group">
+                        <div class="bg-yellow-400/10 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-yellow-400/20 transition-all duration-300 group-hover:rotate-6">
+                            <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-yellow-400 group-hover:text-white transition-colors duration-300">Content Creation</h3>
+                        <p class="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">Our team crafts captivating content across social media, blogs and video platforms to engage your audience effectively.</p>
+                    </div>
+    
+                    <!-- Sponsorship Management Card -->
+                    <div class="snap-center shrink-0 w-[85vw] md:w-[400px] rounded-2xl p-8 backdrop-blur-sm bg-gradient-to-b from-white/5 to-black/70 border border-white/10 hover:border-yellow-400/30 transition-all duration-500 group">
+                        <div class="bg-yellow-400/10 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-yellow-400/20 transition-all duration-300 group-hover:rotate-6">
+                            <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-yellow-400 group-hover:text-white transition-colors duration-300">Sponsorship Management</h3>
+                        <p class="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">We identify and manage sponsor relationships, ensuring seamless integration and value for both events and partners.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+    <!-- Mission Section -->
+    <section class="py-16 bg-black relative">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <div class="inline-block px-4 py-1 border-l-4 border-yellow-400 bg-black mb-4">
+                    <p class="text-yellow-400 font-medium">OUR MISSION</p>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Deliver <span class="text-yellow-400">Exceptional</span> Experiences</h2>
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">Our mission is to deliver exceptional event management and digital marketing services that exceed client expectations. We strive to create unique and personalized experiences through innovation, creativity, and professionalism.</p>
+                <div class="w-24 h-1 bg-yellow-400 mx-auto"></div>
+            </div>
+        </div>
+    </section>
+ 
+<section class="avow-services-section" style="position: relative; width: 100%; height: auto; font-family: 'Poppins', sans-serif; text-align: center; margin: 0; padding: 50px 0; overflow: hidden; background-color: #111; color: #fff; isolation: isolate; box-sizing: border-box;">
+  <h2 style="margin-bottom: 40px; font-size: clamp(28px, 5vw, 42px); color: #FFD700; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;">What We Do</h2>
+  
+  <div class="compass-wrapper" style="position: relative; max-width: 1200px; margin: 0 auto; padding: 20px;">
+    <!-- Responsive container -->
+    <div style="position: relative; width: 100%; padding-bottom: 100%; max-width: 800px; margin: 0 auto;">
+      
+      <!-- SVG with viewBox for responsiveness -->
+      <svg viewBox="0 0 1000 1000" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+        <!-- Decorative elements -->
+        <circle cx="500" cy="500" r="400" fill="none" stroke="#333" stroke-width="1" />
+        <circle cx="500" cy="500" r="300" fill="none" stroke="#333" stroke-width="1" />
+        
+        <!-- Connecting lines with animation and gradient -->
+        <defs>
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.3" />
+            <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        
+        <!-- Main connecting lines -->
+        <line x1="500" y1="500" x2="500" y2="100" stroke="url(#lineGradient)" stroke-width="3" />
+        <line x1="500" y1="500" x2="776" y2="210" stroke="url(#lineGradient)" stroke-width="3" />
+        <line x1="500" y1="500" x2="900" y2="500" stroke="url(#lineGradient)" stroke-width="3" />
+        <line x1="500" y1="500" x2="776" y2="790" stroke="url(#lineGradient)" stroke-width="3" />
+        <line x1="500" y1="500" x2="500" y2="900" stroke="url(#lineGradient)" stroke-width="3" />
+        <line x1="500" y1="500" x2="224" y2="790" stroke="url(#lineGradient)" stroke-width="3" />
+        <line x1="500" y1="500" x2="100" y2="500" stroke="url(#lineGradient)" stroke-width="3" />
+        <line x1="500" y1="500" x2="224" y2="210" stroke="url(#lineGradient)" stroke-width="3" />
+        <line x1="500" y1="500" x2="350" y2="150" stroke="url(#lineGradient)" stroke-width="3" />
+        <line x1="500" y1="500" x2="650" y2="150" stroke="url(#lineGradient)" stroke-width="3" />
+        
+        <!-- Center AVOW Logo Area -->
+        <circle cx="500" cy="500" r="80" fill="#000" stroke="#FFD700" stroke-width="4" />
+        <text x="500" y="510" text-anchor="middle" dominant-baseline="middle" fill="#FFD700" style="font-size: 40px; font-weight: bold; font-family: 'Poppins', sans-serif;">AVOW</text>
+        
+        <!-- Service Items (positioned within SVG for better responsiveness) -->
+        <!-- Each service has a highlight circle, icon background and text -->
+        <g class="service-node" style="cursor: pointer;">
+          <circle cx="500" cy="100" r="60" fill="#1a1a1a" stroke="#FFD700" stroke-width="2" />
+          <circle cx="500" cy="100" r="40" fill="#FFD700" />
+          <text x="500" y="105" text-anchor="middle" dominant-baseline="middle" fill="#000" style="font-size: 24px;">🏢</text>
+          <text x="500" y="180" text-anchor="middle" fill="#FFD700" style="font-size: 18px; font-weight: bold;">Hospitality</text>
+        </g>
+        
+        <g class="service-node" style="cursor: pointer;">
+          <circle cx="776" cy="210" r="60" fill="#1a1a1a" stroke="#FFD700" stroke-width="2" />
+          <circle cx="776" cy="210" r="40" fill="#FFD700" />
+          <text x="776" y="215" text-anchor="middle" dominant-baseline="middle" fill="#000" style="font-size: 24px;">🏃</text>
+          <text x="776" y="290" text-anchor="middle" fill="#FFD700" style="font-size: 18px; font-weight: bold;">Sportainment</text>
+        </g>
+        
+        <g class="service-node" style="cursor: pointer;">
+          <circle cx="900" cy="500" r="60" fill="#1a1a1a" stroke="#FFD700" stroke-width="2" />
+          <circle cx="900" cy="500" r="40" fill="#FFD700" />
+          <text x="900" y="505" text-anchor="middle" dominant-baseline="middle" fill="#000" style="font-size: 24px;">💬</text>
+          <text x="900" y="580" text-anchor="middle" fill="#FFD700" style="font-size: 18px; font-weight: bold;">Social Media</text>
+        </g>
+        
+        <g class="service-node" style="cursor: pointer;">
+          <circle cx="776" cy="790" r="60" fill="#1a1a1a" stroke="#FFD700" stroke-width="2" />
+          <circle cx="776" cy="790" r="40" fill="#FFD700" />
+          <text x="776" y="795" text-anchor="middle" dominant-baseline="middle" fill="#000" style="font-size: 24px;">🖥️</text>
+          <text x="776" y="870" text-anchor="middle" fill="#FFD700" style="font-size: 18px; font-weight: bold;">Graphic Design</text>
+        </g>
+        
+        <g class="service-node" style="cursor: pointer;">
+          <circle cx="500" cy="900" r="60" fill="#1a1a1a" stroke="#FFD700" stroke-width="2" />
+          <circle cx="500" cy="900" r="40" fill="#FFD700" />
+          <text x="500" y="905" text-anchor="middle" dominant-baseline="middle" fill="#000" style="font-size: 24px;">🎥</text>
+          <text x="500" y="980" text-anchor="middle" fill="#FFD700" style="font-size: 18px; font-weight: bold;">Video Creation</text>
+        </g>
+        
+        <g class="service-node" style="cursor: pointer;">
+          <circle cx="224" cy="790" r="60" fill="#1a1a1a" stroke="#FFD700" stroke-width="2" />
+          <circle cx="224" cy="790" r="40" fill="#FFD700" />
+          <text x="224" y="795" text-anchor="middle" dominant-baseline="middle" fill="#000" style="font-size: 24px;">📣</text>
+          <text x="224" y="870" text-anchor="middle" fill="#FFD700" style="font-size: 18px; font-weight: bold;">Branding</text>
+        </g>
+        
+        <g class="service-node" style="cursor: pointer;">
+          <circle cx="100" cy="500" r="60" fill="#1a1a1a" stroke="#FFD700" stroke-width="2" />
+          <circle cx="100" cy="500" r="40" fill="#FFD700" />
+          <text x="100" y="505" text-anchor="middle" dominant-baseline="middle" fill="#000" style="font-size: 24px;">🎞️</text>
+          <text x="100" y="580" text-anchor="middle" fill="#FFD700" style="font-size: 18px; font-weight: bold;">Media Mgmt</text>
+        </g>
+        
+        <g class="service-node" style="cursor: pointer;">
+          <circle cx="224" cy="210" r="60" fill="#1a1a1a" stroke="#FFD700" stroke-width="2" />
+          <circle cx="224" cy="210" r="40" fill="#FFD700" />
+          <text x="224" y="215" text-anchor="middle" dominant-baseline="middle" fill="#000" style="font-size: 24px;">👥</text>
+          <text x="224" y="290" text-anchor="middle" fill="#FFD700" style="font-size: 18px; font-weight: bold;">Logistics</text>
+        </g>
+        
+        <g class="service-node" style="cursor: pointer;">
+          <circle cx="350" cy="150" r="60" fill="#1a1a1a" stroke="#FFD700" stroke-width="2" />
+          <circle cx="350" cy="150" r="40" fill="#FFD700" />
+          <text x="350" y="155" text-anchor="middle" dominant-baseline="middle" fill="#000" style="font-size: 24px;">📍</text>
+          <text x="350" y="230" text-anchor="middle" fill="#FFD700" style="font-size: 18px; font-weight: bold;">Venue Mgmt</text>
+        </g>
+        
+        <g class="service-node" style="cursor: pointer;">
+          <circle cx="650" cy="150" r="60" fill="#1a1a1a" stroke="#FFD700" stroke-width="2" />
+          <circle cx="650" cy="150" r="40" fill="#FFD700" />
+          <text x="650" y="155" text-anchor="middle" dominant-baseline="middle" fill="#000" style="font-size: 24px;">💼</text>
+          <text x="650" y="230" text-anchor="middle" fill="#FFD700" style="font-size: 18px; font-weight: bold;">Operations</text>
+        </g>
+      </svg>
+    </div>
+    
+    <!-- Mobile-friendly service list (appears on small screens) -->
+    <div class="mobile-services" style="display: none; margin-top: 40px; padding: 0 20px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; max-width: 600px; margin: 0 auto;">
+        <div style="background: #1a1a1a; border: 2px solid #FFD700; padding: 20px 10px; border-radius: 10px; text-align: center;">
+          <div style="font-size: 28px; margin-bottom: 10px;">🏢</div>
+          <h3 style="margin: 0; font-size: 16px; color: #FFD700;">Hospitality</h3>
+        </div>
+        <div style="background: #1a1a1a; border: 2px solid #FFD700; padding: 20px 10px; border-radius: 10px; text-align: center;">
+          <div style="font-size: 28px; margin-bottom: 10px;">🏃</div>
+          <h3 style="margin: 0; font-size: 16px; color: #FFD700;">Sportainment</h3>
+        </div>
+        <div style="background: #1a1a1a; border: 2px solid #FFD700; padding: 20px 10px; border-radius: 10px; text-align: center;">
+          <div style="font-size: 28px; margin-bottom: 10px;">💬</div>
+          <h3 style="margin: 0; font-size: 16px; color: #FFD700;">Social Media Marketing</h3>
+        </div>
+        <div style="background: #1a1a1a; border: 2px solid #FFD700; padding: 20px 10px; border-radius: 10px; text-align: center;">
+          <div style="font-size: 28px; margin-bottom: 10px;">🖥️</div>
+          <h3 style="margin: 0; font-size: 16px; color: #FFD700;">Graphic Designing</h3>
+        </div>
+        <div style="background: #1a1a1a; border: 2px solid #FFD700; padding: 20px 10px; border-radius: 10px; text-align: center;">
+          <div style="font-size: 28px; margin-bottom: 10px;">🎥</div>
+          <h3 style="margin: 0; font-size: 16px; color: #FFD700;">Video Creation</h3>
+        </div>
+        <div style="background: #1a1a1a; border: 2px solid #FFD700; padding: 20px 10px; border-radius: 10px; text-align: center;">
+          <div style="font-size: 28px; margin-bottom: 10px;">📣</div>
+          <h3 style="margin: 0; font-size: 16px; color: #FFD700;">Branding & Advertising</h3>
+        </div>
+        <div style="background: #1a1a1a; border: 2px solid #FFD700; padding: 20px 10px; border-radius: 10px; text-align: center;">
+          <div style="font-size: 28px; margin-bottom: 10px;">🎞️</div>
+          <h3 style="margin: 0; font-size: 16px; color: #FFD700;">Media Management</h3>
+        </div>
+        <div style="background: #1a1a1a; border: 2px solid #FFD700; padding: 20px 10px; border-radius: 10px; text-align: center;">
+          <div style="font-size: 28px; margin-bottom: 10px;">👥</div>
+          <h3 style="margin: 0; font-size: 16px; color: #FFD700;">Logistics & Accommodation</h3>
+        </div>
+        <div style="background: #1a1a1a; border: 2px solid #FFD700; padding: 20px 10px; border-radius: 10px; text-align: center;">
+          <div style="font-size: 28px; margin-bottom: 10px;">📍</div>
+          <h3 style="margin: 0; font-size: 16px; color: #FFD700;">Venue Selection & Management</h3>
+        </div>
+        <div style="background: #1a1a1a; border: 2px solid #FFD700; padding: 20px 10px; border-radius: 10px; text-align: center;">
+          <div style="font-size: 28px; margin-bottom: 10px;">💼</div>
+          <h3 style="margin: 0; font-size: 16px; color: #FFD700;">Field Operations Management</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <section id="events" class="py-20 premium-gradient relative overflow-hidden">
+        <!-- Animated particles background -->
+        <div id="particles-js" class="absolute inset-0 z-0 opacity-30"></div>
+        
+        <!-- Top gradient fade -->
+        <div class="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black to-transparent"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Animated heading section -->
+            <div class="text-center mb-16 relative" data-aos="fade-up">
+                <!-- Decorative elements -->
+                <div class="absolute -left-4 -top-6 w-24 h-24 bg-yellow-400/10 rounded-full blur-xl"></div>
+                <div class="absolute -right-8 top-10 w-32 h-32 bg-yellow-400/5 rounded-full blur-xl"></div>
+                
+                <div class="inline-block px-6 py-2 border-l-4 border-yellow-400 bg-black/50 mb-4 backdrop-blur-sm transform hover:scale-105 transition-transform duration-300 shadow-lg shadow-yellow-400/10">
+                    <p class="text-yellow-400 font-medium tracking-wider flex items-center">
+                        <i class="fas fa-medal mr-2"></i>
+                        EVENT SPECIALIZATIONS
+                    </p>
+                </div>
+                
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white relative">
+                    Our <span class="text-yellow-400 relative inline-block">
+                        Event
+                        <span class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-yellow-400/0 via-yellow-400 to-yellow-400/0"></span>
+                    </span> Expertise
+                </h2>
+                
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    We excel in managing a diverse range of events, each with specialized requirements and unique approaches.
+                </p>
+                
+                <!-- Event counter stats -->
+                <div class="flex flex-wrap justify-center gap-8 mt-10">
+                    <div class="stat-counter text-center" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="text-4xl font-bold text-yellow-400 counter-value flex items-center justify-center" data-target="250">
+                            <i class="fas fa-calendar-check text-3xl mr-2 opacity-80"></i>
+                            <span>0</span>
+                        </div>
+                        <p class="text-gray-400 text-sm uppercase tracking-wider">Events Completed</p>
+                    </div>
+                    <div class="stat-counter text-center" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="text-4xl font-bold text-yellow-400 counter-value flex items-center justify-center" data-target="85">
+                            <i class="fas fa-smile-beam text-3xl mr-2 opacity-80"></i>
+                            <span>0</span>
+                        </div>
+                        <p class="text-gray-400 text-sm uppercase tracking-wider">Client Satisfaction %</p>
+                    </div>
+                    <div class="stat-counter text-center" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="text-4xl font-bold text-yellow-400 counter-value flex items-center justify-center" data-target="12">
+                            <i class="fas fa-award text-3xl mr-2 opacity-80"></i>
+                            <span>0</span>
+                        </div>
+                        <p class="text-gray-400 text-sm uppercase tracking-wider">Years Experience</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Event cards section - first row -->
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Political Events Card -->
+                <div class="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-md rounded-xl p-0 border border-gray-800 overflow-hidden group transition-all duration-300 hover:border-yellow-400/30 hover:shadow-xl hover:shadow-yellow-400/10" data-aos="fade-right">
+                    <!-- Card Header with Glass Effect -->
+                    <div class="bg-black/50 backdrop-blur-md p-6 border-b border-gray-800/50 relative">
+                        <!-- Decorative corner -->
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-yellow-400/20 w-24 h-5 -right-4 top-8"></div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-gradient-to-br from-yellow-300/30 to-yellow-500/20 w-14 h-14 rounded-full flex items-center justify-center mr-5 shadow-lg shadow-yellow-400/10 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-landmark text-yellow-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-yellow-400 tracking-wide">Political Events</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8">
+                        <!-- Features with enhanced icons -->
+                        <ul class="space-y-5 mb-8">
+                            <li class="flex items-start group/item">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-4 group-hover/item:bg-yellow-400/20 transition-all duration-300">
+                                    <i class="fas fa-bullhorn text-yellow-400 group-hover/item:scale-110 transition-transform"></i>
+                                </div>
+                                <p class="text-gray-300 leading-relaxed">Large-scale rallies and public meetings with seamless logistics, sound, and security</p>
+                            </li>
+                            <li class="flex items-start group/item">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-4 group-hover/item:bg-yellow-400/20 transition-all duration-300">
+                                    <i class="fas fa-comments text-yellow-400 group-hover/item:scale-110 transition-transform"></i>
+                                </div>
+                                <p class="text-gray-300 leading-relaxed">Structured debates and forums with comprehensive venue setup and live streaming</p>
+                            </li>
+                            <li class="flex items-start group/item">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-4 group-hover/item:bg-yellow-400/20 transition-all duration-300">
+                                    <i class="fas fa-microphone-alt text-yellow-400 group-hover/item:scale-110 transition-transform"></i>
+                                </div>
+                                <p class="text-gray-300 leading-relaxed">Professional press conferences with strategic venue selection and media coordination</p>
+                            </li>
+                            <li class="flex items-start group/item">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-4 group-hover/item:bg-yellow-400/20 transition-all duration-300">
+                                    <i class="fas fa-users-cog text-yellow-400 group-hover/item:scale-110 transition-transform"></i>
+                                </div>
+                                <p class="text-gray-300 leading-relaxed">Volunteer management including training sessions and strategic planning meetings</p>
+                            </li>
+                        </ul>
+                        
+                        <!-- Recent events with enhanced cards -->
+                        <div class="mt-8 relative">
+                            <div class="absolute -left-3 -bottom-3 w-24 h-24 bg-yellow-400/5 rounded-full blur-xl"></div>
+                            <p class="text-gray-300 mb-5 font-medium inline-flex items-center">
+                                <i class="fas fa-history text-yellow-400 mr-2"></i>
+                                <span class="w-8 h-1 bg-yellow-400/30 mr-3"></span>
+                                Recent Political Events
+                            </p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-gradient-to-br from-gray-900/70 to-gray-800/40 p-4 rounded-xl border border-gray-700/50 hover:border-yellow-400/30 transition-all duration-300 transform hover:-translate-y-1 group/card">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-300/30 to-yellow-500/20 rounded-full flex items-center justify-center mr-3 shadow-lg shadow-yellow-400/5 group-hover/card:shadow-yellow-400/20 transition-all duration-300">
+                                            <img src="Screenshot 2025-02-20 192729.png" alt="DMK Logo" class="w-7 h-7 object-contain rounded-full" />
+                                        </div>
+                                        <div>
+                                            <p class="text-white text-sm font-medium">DMK Youth Wing Event</p>
+                                            <p class="text-gray-400 text-xs mt-1 flex items-center">
+                                                <i class="fas fa-map-marker-alt mr-1 text-yellow-400/70"></i>
+                                                Salem, Tamil Nadu
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-gradient-to-br from-gray-900/70 to-gray-800/40 p-4 rounded-xl border border-gray-700/50 hover:border-yellow-400/30 transition-all duration-300 transform hover:-translate-y-1 group/card">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-300/30 to-yellow-500/20 rounded-full flex items-center justify-center mr-3 shadow-lg shadow-yellow-400/5 group-hover/card:shadow-yellow-400/20 transition-all duration-300">
+                                            <img src="Screenshot 2025-02-20 192741.png" alt="NRI Wing Logo" class="w-7 h-7 object-contain rounded-full" />
+                                        </div>
+                                        <div>
+                                            <p class="text-white text-sm font-medium">DMK NRI Wing Event</p>
+                                            <p class="text-gray-400 text-xs mt-1 flex items-center">
+                                                <i class="fas fa-map-marker-alt mr-1 text-yellow-400/70"></i>
+                                                Chennai, Tamil Nadu
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sports Events Card -->
+                <div class="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-md rounded-xl p-0 border border-gray-800 overflow-hidden group transition-all duration-300 hover:border-yellow-400/30 hover:shadow-xl hover:shadow-yellow-400/10" data-aos="fade-left">
+                    <!-- Card Header with Glass Effect -->
+                    <div class="bg-black/50 backdrop-blur-md p-6 border-b border-gray-800/50 relative">
+                        <!-- Decorative corner -->
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-yellow-400/20 w-24 h-5 -right-4 top-8"></div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-gradient-to-br from-yellow-300/30 to-yellow-500/20 w-14 h-14 rounded-full flex items-center justify-center mr-5 shadow-lg shadow-yellow-400/10 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-running text-yellow-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-yellow-400 tracking-wide">Sports Events</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8">
+                        <p class="text-gray-300 mb-6 leading-relaxed">From initial concept to final execution, we provide comprehensive planning and coordination services for sporting events of all scales.</p>
+                        
+                        <!-- Services grid with hover effects and improved icons -->
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="flex items-start group/service">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-3 group-hover/service:bg-yellow-400/20 transition-all duration-300">
+                                    <i class="fas fa-building text-yellow-400 text-xs group-hover/service:scale-110 transition-transform"></i>
+                                </div>
+                                <p class="text-gray-300 text-sm">Venue Management</p>
+                            </div>
+                            <div class="flex items-start group/service">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-3 group-hover/service:bg-yellow-400/20 transition-all duration-300">
+                                    <i class="fas fa-drafting-compass text-yellow-400 text-xs group-hover/service:scale-110 transition-transform"></i>
+                                </div>
+                                <p class="text-gray-300 text-sm">Event Design</p>
+                            </div>
+                            <div class="flex items-start group/service">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-3 group-hover/service:bg-yellow-400/20 transition-all duration-300">
+                                    <i class="fas fa-hotel text-yellow-400 text-xs group-hover/service:scale-110 transition-transform"></i>
+                                </div>
+                                <p class="text-gray-300 text-sm">Travel & Lodging</p>
+                            </div>
+                            <div class="flex items-start group/service">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-3 group-hover/service:bg-yellow-400/20 transition-all duration-300">
+                                    <i class="fas fa-ad text-yellow-400 text-xs group-hover/service:scale-110 transition-transform"></i>
+                                </div>
+                                <p class="text-gray-300 text-sm">Marketing & Promotions</p>
+                            </div>
+                            <div class="flex items-start group/service">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-3 group-hover/service:bg-yellow-400/20 transition-all duration-300">
+                                    <i class="fas fa-share-alt text-yellow-400 text-xs group-hover/service:scale-110 transition-transform"></i>
+                                </div>
+                                <p class="text-gray-300 text-sm">Social Media Management</p>
+                            </div>
+                            <div class="flex items-start group/service">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-3 group-hover/service:bg-yellow-400/20 transition-all duration-300">
+                                    <i class="fas fa-broadcast-tower text-yellow-400 text-xs group-hover/service:scale-110 transition-transform"></i>
+                                </div>
+                                <p class="text-gray-300 text-sm">Live Streaming</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Notable events with enhanced cards -->
+                        <div class="mt-6 relative">
+                            <div class="absolute -right-3 -bottom-3 w-24 h-24 bg-yellow-400/5 rounded-full blur-xl"></div>
+                            <p class="text-gray-300 mb-5 font-medium inline-flex items-center">
+                                <i class="fas fa-trophy text-yellow-400 mr-2"></i>
+                                <span class="w-8 h-1 bg-yellow-400/30 mr-3"></span>
+                                Notable Sports Events
+                            </p>
+                            <div class="grid grid-cols-3 gap-3">
+                                <div class="event-card relative group/event overflow-hidden rounded-xl border border-gray-700/50 transition-all duration-300 hover:border-yellow-400/30">
+                                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/90 z-10"></div>
+                                    <img src="Screenshot 2025-02-20 193203.png" alt="Hockey Tournament" class="w-full h-24 object-cover transition-transform duration-500 group-hover/event:scale-110">
+                                    <div class="absolute bottom-0 left-0 right-0 p-3 z-20">
+                                        <p class="text-white text-xs font-medium flex items-center">
+                                            <i class="fas fa-hockey-puck mr-1 text-yellow-400/80"></i>
+                                            Asian Champions Trophy
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="event-card relative group/event overflow-hidden rounded-xl border border-gray-700/50 transition-all duration-300 hover:border-yellow-400/30">
+                                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/90 z-10"></div>
+                                    <img src="Screenshot 2025-02-20 193323.png" alt="Badminton Tournament" class="w-full h-24 object-cover transition-transform duration-500 group-hover/event:scale-110">
+                                    <div class="absolute bottom-0 left-0 right-0 p-3 z-20">
+                                        <p class="text-white text-xs font-medium flex items-center">
+                                            <i class="fas fa-table-tennis mr-1 text-yellow-400/80"></i>
+                                            Corporate Badminton League
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="event-card relative group/event overflow-hidden rounded-xl border border-gray-700/50 transition-all duration-300 hover:border-yellow-400/30">
+                                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/90 z-10"></div>
+                                    <img src="Screenshot 2025-02-20 193400.png" alt="Khelo India" class="w-full h-24 object-cover transition-transform duration-500 group-hover/event:scale-110">
+                                    <div class="absolute bottom-0 left-0 right-0 p-3 z-20">
+                                        <p class="text-white text-xs font-medium flex items-center">
+                                            <i class="fas fa-flag-checkered mr-1 text-yellow-400/80"></i>
+                                            Khelo India
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Event cards section - second row -->
+            <div class="grid md:grid-cols-2 gap-12 mt-12">
+                <!-- Virtual Events Card -->
+                <div class="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-md rounded-xl p-0 border border-gray-800 overflow-hidden group transition-all duration-300 hover:border-yellow-400/30 hover:shadow-xl hover:shadow-yellow-400/10" data-aos="fade-right">
+                    <!-- Card Header with Glass Effect -->
+                    <div class="bg-black/50 backdrop-blur-md p-6 border-b border-gray-800/50 relative">
+                        <!-- Decorative corner -->
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-yellow-400/20 w-24 h-5 -right-4 top-8"></div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-gradient-to-br from-yellow-300/30 to-yellow-500/20 w-14 h-14 rounded-full flex items-center justify-center mr-5 shadow-lg shadow-yellow-400/10 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-laptop-code text-yellow-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-yellow-400 tracking-wide">Virtual Events</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8">
+                        <p class="text-gray-300 mb-6 leading-relaxed">Crafting immersive digital event experiences with cutting-edge streaming solutions and interactive elements.</p>
+                        
+                        <ul class="space-y-5 mb-8">
+                            <li class="flex items-start group/item">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-4 group-hover/item:bg-yellow-400/20 transition-all duration-300">
+                                    <i class="fas fa-film text-yellow-400 group-hover/item:scale-110 transition-transform"></i>
+                                </div>
+                                <p class="text-gray-300 leading-relaxed">Professional live streaming setup with multiple camera angles and branded overlays</p>
+                            </li>
+                            <li class="flex items-start group/item">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-4 group-hover/item:bg-yellow-400/20 transition-all duration-300">
+                                    <i class="fas fa-hands-helping text-yellow-400 group-hover/item:scale-110 transition-transform"></i>
+                                </div>
+                                <p class="text-gray-300 leading-relaxed">Interactive audience engagement tools including polls, Q&A sessions, and digital breakout rooms</p>
+                            </li>
+                            <li class="flex items-start group/item">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-4 group-hover/item:bg-yellow-400/20 transition-all duration-300">
+                                    <i class="fas fa-shield-alt text-yellow-400 group-hover/item:scale-110 transition-transform"></i>
+                                </div>
+                                <p class="text-gray-300 leading-relaxed">Seamless technical management with redundant systems to prevent disruptions</p>
+                            </li>
+                        </ul>
+                        
+                        <!-- Interactive capabilities showcase -->
+                        <div class="mt-8">
+                            <p class="text-gray-300 mb-4 font-medium inline-flex items-center">
+                                <i class="fas fa-server text-yellow-400 mr-2"></i>
+                                <span class="w-8 h-1 bg-yellow-400/30 mr-3"></span>
+                                Virtual Capabilities
+                            </p>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="relative overflow-hidden rounded-xl aspect-video group/capability">
+                                   
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-end">
+                                        <div class="p-3">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-satellite-dish text-yellow-400 mr-2"></i>
+                                                <p class="text-white text-xs font-medium">Multi-Platform Streaming</p>
+                                            </div>
+                                            <div class="flex space-x-1">
+                                                <i class="fab fa-youtube text-red-500 bg-white rounded-full p-1 text-xs"></i>
+                                                <i class="fab fa-facebook text-blue-500 bg-white rounded-full p-1 text-xs"></i>
+                                                <i class="fab fa-twitch text-purple-500 bg-white rounded-full p-1 text-xs"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-2 right-2 bg-yellow-400/80 text-black text-xs font-bold px-2 py-1 rounded flex items-center">
+                                        <i class="fas fa-circle text-red-600 animate-pulse mr-1 text-xs"></i>
+                                        LIVE
+                                    </div>
+                                </div>
+                                <div class="relative overflow-hidden rounded-xl aspect-video group/capability">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-end">
+                                        <div class="p-3">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-chart-pie text-yellow-400 mr-2"></i>
+                                                <p class="text-white text-xs font-medium">Interactive Elements</p>
+                                            </div>
+                                            <div class="flex space-x-2">
+                                                <span class="bg-gray-800/80 text-gray-300 text-xs px-2 py-1 rounded-full flex items-center">
+                                                    <i class="fas fa-chart-bar text-yellow-400/80 mr-1 text-xs"></i>
+                                                    Polls
+                                                </span>
+                                                <span class="bg-gray-800/80 text-gray-300 text-xs px-2 py-1 rounded-full flex items-center">
+                                                    <i class="fas fa-question-circle text-yellow-400/80 mr-1 text-xs"></i>
+                                                    Q&A
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-2 right-2 bg-green-400/80 text-black text-xs font-bold px-2 py-1 rounded flex items-center">
+                                        <i class="fas fa-star text-yellow-300 mr-1 text-xs"></i>
+                                        NEW
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mt-6">
+                            <span class="bg-gray-800/80 backdrop-blur-sm text-xs text-gray-300 px-3 py-1 rounded-full border border-gray-700/50 hover:border-yellow-400/30 hover:bg-gray-700/50 transition-colors duration-300 cursor-pointer flex items-center">
+                                <i class="fas fa-desktop text-yellow-400/80 mr-1"></i>
+                                Webinars
+                            </span>
+                            <span class="bg-gray-800/80 backdrop-blur-sm text-xs text-gray-300 px-3 py-1 rounded-full border border-gray-700/50 hover:border-yellow-400/30 hover:bg-gray-700/50 transition-colors duration-300 cursor-pointer flex items-center">
+                                <i class="fas fa-users text-yellow-400/80 mr-1"></i>
+                                Virtual Conferences
+                            </span>
+                            <span class="bg-gray-800/80 backdrop-blur-sm text-xs text-gray-300 px-3 py-1 rounded-full border border-gray-700/50 hover:border-yellow-400/30 hover:bg-gray-700/50 transition-colors duration-300 cursor-pointer flex items-center">
+                                <i class="fas fa-sync-alt text-yellow-400/80 mr-1"></i>
+                                Hybrid Events
+                            </span>
+                            <span class="bg-yellow-400/20 backdrop-blur-sm text-xs text-yellow-400 px-3 py-1 rounded-full border border-yellow-400/30 hover:bg-yellow-400/30 transition-colors duration-300 cursor-pointer">
+                                <i class="fas fa-crown mr-1 text-xs"></i>
+                                Premium Packages
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Corporate Events Card -->
+                <div class="bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-md rounded-xl p-0 border border-gray-800 overflow-hidden group transition-all duration-300 hover:border-yellow-400/30 hover:shadow-xl hover:shadow-yellow-400/10" data-aos="fade-left">
+                    <!-- Card Header with Glass Effect -->
+                    <div class="bg-black/50 backdrop-blur-md p-6 border-b border-gray-800/50 relative">
+                        <!-- Decorative corner -->
+                        <div class="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                            <div class="absolute transform rotate-45 bg-yellow-400/20 w-24 h-5 -right-4 top-8"></div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="bg-gradient-to-br from-yellow-300/30 to-yellow-500/20 w-14 h-14 rounded-full flex items-center justify-center mr-5 shadow-lg shadow-yellow-400/10 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-briefcase text-yellow-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-yellow-400 tracking-wide">Corporate Events</h3>
+                    </div>
+                </div>
+                
+                <div class="p-8">
+                    <p class="text-gray-300 mb-6 leading-relaxed">Elevate your company's profile with our meticulously planned corporate events that align with your brand values and business objectives.</p>
+                    
+                    <!-- Corporate event types -->
+                    <ul class="space-y-5 mb-8">
+                        <li class="flex items-start group/item">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-4 group-hover/item:bg-yellow-400/20 transition-all duration-300">
+                                <i class="fas fa-handshake text-yellow-400 group-hover/item:scale-110 transition-transform"></i>
+                            </div>
+                            <p class="text-gray-300 leading-relaxed">Executive conferences and board meetings with premium amenities and confidentiality</p>
+                        </li>
+                        <li class="flex items-start group/item">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-4 group-hover/item:bg-yellow-400/20 transition-all duration-300">
+                                <i class="fas fa-glass-cheers text-yellow-400 group-hover/item:scale-110 transition-transform"></i>
+                            </div>
+                            <p class="text-gray-300 leading-relaxed">Team-building retreats and corporate celebrations with customized activities</p>
+                        </li>
+                        <li class="flex items-start group/item">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-400/10 flex items-center justify-center mr-4 group-hover/item:bg-yellow-400/20 transition-all duration-300">
+                                <i class="fas fa-chalkboard-teacher text-yellow-400 group-hover/item:scale-110 transition-transform"></i>
+                            </div>
+                            <p class="text-gray-300 leading-relaxed">Product launches and trade exhibitions with immersive brand experiences</p>
+                        </li>
+                    </ul>
+                    
+                    <!-- Corporate client testimonial -->
+                    <div class="mt-8 relative">
+                        <div class="absolute -right-3 -bottom-3 w-24 h-24 bg-yellow-400/5 rounded-full blur-xl"></div>
+                        <div class="bg-black/30 backdrop-blur-sm border border-gray-700/50 p-5 rounded-xl relative">
+                            <div class="absolute -top-3 -left-3 text-yellow-400 text-3xl opacity-40">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p class="text-gray-300 italic text-sm relative z-10">The attention to detail and professional execution of our annual leadership summit exceeded our expectations. Every aspect was handled with precision and care.</p>
+                            <div class="mt-4 flex items-center">
+                                <div class="w-10 h-10 bg-gradient-to-br from-yellow-300/30 to-yellow-500/20 rounded-full flex items-center justify-center mr-3 shadow-lg shadow-yellow-400/5">
+                                    <i class="fas fa-building text-yellow-400 text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white text-sm font-medium">Rajesh Mehta</p>
+                                    <p class="text-gray-400 text-xs">Director, TCS Corporate Events</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Corporate clients logos -->
+                    <div class="mt-6">
+                        <p class="text-gray-300 mb-4 font-medium inline-flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-2"></i>
+                            <span class="w-8 h-1 bg-yellow-400/30 mr-3"></span>
+                            Trusted By
+                        </p>
+                        <div class="grid grid-cols-4 gap-3">
+                            <div class="bg-white/5 backdrop-blur-sm p-3 rounded-xl flex items-center justify-center border border-gray-700/30 hover:border-yellow-400/30 transition-all duration-300 group/client">
+                                <img src="/api/placeholder/80/30" alt="Client logo" class="max-h-6 opacity-70 group-hover/client:opacity-100 transition-opacity duration-300" />
+                            </div>
+                            <div class="bg-white/5 backdrop-blur-sm p-3 rounded-xl flex items-center justify-center border border-gray-700/30 hover:border-yellow-400/30 transition-all duration-300 group/client">
+                                <img src="/api/placeholder/80/30" alt="Client logo" class="max-h-6 opacity-70 group-hover/client:opacity-100 transition-opacity duration-300" />
+                            </div>
+                            <div class="bg-white/5 backdrop-blur-sm p-3 rounded-xl flex items-center justify-center border border-gray-700/30 hover:border-yellow-400/30 transition-all duration-300 group/client">
+                                <img src="/api/placeholder/80/30" alt="Client logo" class="max-h-6 opacity-70 group-hover/client:opacity-100 transition-opacity duration-300" />
+                            </div>
+                            <div class="bg-white/5 backdrop-blur-sm p-3 rounded-xl flex items-center justify-center border border-gray-700/30 hover:border-yellow-400/30 transition-all duration-300 group/client">
+                                <img src="/api/placeholder/80/30" alt="Client logo" class="max-h-6 opacity-70 group-hover/client:opacity-100 transition-opacity duration-300" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA Section -->
+        <div class="mt-20 text-center" data-aos="fade-up">
+            <a href="#contact" class="inline-block px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-400 text-black font-bold rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg shadow-yellow-400/20 hover:shadow-yellow-400/40">
+                <span class="flex items-center">
+                    <i class="fas fa-calendar-plus mr-2"></i>
+                    Schedule Your Event Consultation
+                </span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Bottom gradient fade -->
+    <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black to-transparent"></div>
+</section>
+
+
+
+    <!-- What We Do Section -->
+    <section id="what-we-do" class="py-20 bg-black relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block px-4 py-1 border-l-4 border-yellow-400 bg-black/50 mb-4">
+                    <p class="text-yellow-400 font-medium">OUR PROCESS</p>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">How We <span class="text-yellow-400">Work</span></h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">Our systematic approach ensures flawless execution from concept to completion.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="flex flex-col items-center text-center p-6 bg-black/60 border border-gray-800 rounded-xl hover-scale" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mb-6">
+                        <span class="text-black text-2xl font-bold">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-400">Discovery</h3>
+                    <p class="text-gray-400">We begin with in-depth consultations to understand your vision, objectives, and requirements.</p>
+                </div>
+                
+                <div class="flex flex-col items-center text-center p-6 bg-black/60 border border-gray-800 rounded-xl hover-scale" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mb-6">
+                        <span class="text-black text-2xl font-bold">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-400">Strategy</h3>
+                    <p class="text-gray-400">Our experts develop a tailored strategy and comprehensive action plan aligned with your goals.</p>
+                </div>
+                
+                <div class="flex flex-col items-center text-center p-6 bg-black/60 border border-gray-800 rounded-xl hover-scale" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mb-6">
+                        <span class="text-black text-2xl font-bold">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-400">Execution</h3>
+                    <p class="text-gray-400">Our dedicated team implements the plan with precision, attention to detail, and adaptability.</p>
+                </div>
+                
+                <div class="flex flex-col items-center text-center p-6 bg-black/60 border border-gray-800 rounded-xl hover-scale" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mb-6">
+                        <span class="text-black text-2xl font-bold">4</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-400">Analysis</h3>
+                    <p class="text-gray-400">We provide comprehensive post-event analysis and insights to measure success and inform future strategies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 2rem; font-family: 'Arial', sans-serif; color: #fff;">
+        <h1 style="text-align: center; color: #ffd700; font-size: 2.5rem; margin-bottom: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+          Our Trusted Partners
+          <div style="font-size: 1rem; color: #fff; margin-top: 0.5rem;">Excellence Across Industries</div>
+        </h1>
+      
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1400px; margin: 0 auto;">
+          <!-- Media & Publications -->
+          <div style="background: rgba(0,0,0,0.5); border-radius: 15px; padding: 1.5rem; position: relative; overflow: hidden; border: 2px solid #ffd700;">
+            <div style="position: absolute; top: 0; right: 0; background: #ffd700; color: black; padding: 0.5rem 1rem; border-bottom-left-radius: 15px;">
+              Media & Publications
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-top: 2rem;">
+              <div style="text-align: center;">
+                <img src="partnerships-the-hindu.png" alt="THE HINDU" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">THE HINDU</p>
+              </div>
+              <div style="text-align: center;">
+                <img src="a77771e9b9b4-PickleMonkAdsLogoWHITEBG-1675166455155.png" alt="PICKL" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">PICKL MONK </p>
+              </div>
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 124344.png" alt="MONK INMAI" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">UNMAI MEDIA</p>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Technology -->
+          <div style="background: rgba(0,0,0,0.5); border-radius: 15px; padding: 1.5rem; position: relative; overflow: hidden; border: 2px solid #ffd700;">
+            <div style="position: absolute; top: 0; right: 0; background: #ffd700; color: black; padding: 0.5rem 1rem; border-bottom-left-radius: 15px;">
+              Technology
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-top: 2rem;">
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 130525.png" alt="Quadra SENSE" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">Quadra</p>
+              </div>
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 130624.png" alt="SENSE IMAGE TECHNOLOGIES" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">SENSEIMAGE</p>
+              </div>
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 130744.png" alt="FOSTER" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">FOSTER ENERGY</p>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Education & Manufacturing -->
+          <div style="background: rgba(0,0,0,0.5); border-radius: 15px; padding: 1.5rem; position: relative; overflow: hidden; border: 2px solid #ffd700;">
+            <div style="position: absolute; top: 0; right: 0; background: #ffd700; color: black; padding: 0.5rem 1rem; border-bottom-left-radius: 15px;">
+              Education & Manufacturing
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-top: 2rem;">
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 130840.png" alt="CHERAN" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">CHERAN</p>
+              </div>
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 130921.png" alt="raptor" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">raptor</p>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Healthcare -->
+          <div style="background: rgba(0,0,0,0.5); border-radius: 15px; padding: 1.5rem; position: relative; overflow: hidden; border: 2px solid #ffd700;">
+            <div style="position: absolute; top: 0; right: 0; background: #ffd700; color: black; padding: 0.5rem 1rem; border-bottom-left-radius: 15px;">
+              Healthcare
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-top: 2rem;">
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 131120.png" alt="Dr. Mohan's" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">Dr. Mohan's</p>
+              </div>
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 131151.png" alt="HS" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">HS</p>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Strategy and Consulting -->
+          <div style="background: rgba(0,0,0,0.5); border-radius: 15px; padding: 1.5rem; position: relative; overflow: hidden; border: 2px solid #ffd700;">
+            <div style="position: absolute; top: 0; right: 0; background: #ffd700; color: black; padding: 0.5rem 1rem; border-bottom-left-radius: 15px;">
+              Strategy & Consulting
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-top: 2rem;">
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 131239.png" alt="KESTONE" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">KESTONE</p>
+              </div>
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 131710.png" alt="ASPIR:ROW" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">ASPIR:ROW</p>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Fashion & Retail -->
+          <div style="background: rgba(0,0,0,0.5); border-radius: 15px; padding: 1.5rem; position: relative; overflow: hidden; border: 2px solid #ffd700;">
+            <div style="position: absolute; top: 0; right: 0; background: #ffd700; color: black; padding: 0.5rem 1rem; border-bottom-left-radius: 15px;">
+              Fashion & Retail
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-top: 2rem;">
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 131852.png" alt="Akp sarees" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">Akp sarees</p>
+              </div>
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 131934.png" alt="RAMRAJ" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">RAMRAJ</p>
+              </div>
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 132013.png" alt="BGR" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">BGR</p>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Food and Beverages -->
+          <div style="background: rgba(0,0,0,0.5); border-radius: 15px; padding: 1.5rem; position: relative; overflow: hidden; border: 2px solid #ffd700;">
+            <div style="position: absolute; top: 0; right: 0; background: #ffd700; color: black; padding: 0.5rem 1rem; border-bottom-left-radius: 15px;">
+              Food & Beverages
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-top: 2rem;">
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 132103.png" alt="kaappi ready" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">kaappi ready</p>
+              </div>
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 132157.png" alt="THE SPOT CAFE" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">THE SPOT CAFE</p>
+              </div>
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 132237.png" alt="Trezee" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">Trezee</p>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Real Estate -->
+          <div style="background: rgba(0,0,0,0.5); border-radius: 15px; padding: 1.5rem; position: relative; overflow: hidden; border: 2px solid #ffd700;">
+            <div style="position: absolute; top: 0; right: 0; background: #ffd700; color: black; padding: 0.5rem 1rem; border-bottom-left-radius: 15px;">
+              Real Estate
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-top: 2rem;">
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 132343.png" alt="GT REALTY" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">GT REALTY</p>
+              </div>
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 132418.png" alt="PATTINAM" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+                <p style="color: #ffd700; margin: 0;">PATTINAM</p>
+              </div>
+              <div style="text-align: center;">
+                <img src="Screenshot 2025-02-21 132449.png" alt="MAJESTIC" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+          <p style="color: #ffd700; margin: 0;">MAJESTIC</p>
+        </div>
+        <div style="text-align: center;">
+          <img src="Screenshot 2025-02-21 132542.png" alt="One Hub Properties" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+          <p style="color: #ffd700; margin: 0;">One Hub</p>
+        </div>
+        <div style="text-align: center;">
+          <img src="Screenshot 2025-02-21 132624.png" alt="VGN" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+          <p style="color: #ffd700; margin: 0;">VGN</p>
+        </div>
+        <div style="text-align: center;">
+          <img src="Screenshot 2025-02-21 132653.png" alt="THANIGAI" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+          <p style="color: #ffd700; margin: 0;">THANIGAI</p>
+        </div>
+        <div style="text-align: center;">
+          <img src="Screenshot 2025-02-21 132729.png" alt="AMBIANCE CREATORS" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+          <p style="color: #ffd700; margin: 0;">AMBIANCE</p>
+        </div>
+        <div style="text-align: center;">
+          <img src="Screenshot 2025-02-21 132813.png" alt="Anvi" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+          <p style="color: #ffd700; margin: 0;">Anvi</p>
+        </div>
+        <div style="text-align: center;">
+          <img src="Screenshot 2025-02-21 133111.png" alt="ARUN EXCELLO" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+          <p style="color: #ffd700; margin: 0;">ARUN EXCELLO</p>
+        </div>
+        <div style="text-align: center;">
+          <img src="Screenshot 2025-02-21 133208.png" alt="SOBHA" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+          <p style="color: #ffd700; margin: 0;">SOBHA</p>
+        </div>
+        <div style="text-align: center;">
+          <img src="Screenshot 2025-02-21 133304.png" alt="Appaswamy" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+          <p style="color: #ffd700; margin: 0;">Appaswamy</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Others -->
+    <div style="background: rgba(0,0,0,0.5); border-radius: 15px; padding: 1.5rem; position: relative; overflow: hidden; border: 2px solid #ffd700;">
+      <div style="position: absolute; top: 0; right: 0; background: #ffd700; color: black; padding: 0.5rem 1rem; border-bottom-left-radius: 15px;">
+        Government & Others
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-top: 2rem;">
+        <div style="text-align: center;">
+          <img src="Screenshot 2025-02-21 133402.png" alt="Guidance Tamil Nadu" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+          <p style="color: #ffd700; margin: 0;">Guidance TN</p>
+        </div>
+        <div style="text-align: center;">
+          <img src="Screenshot 2025-02-21 133432.png" alt="aspire" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 0.5rem;">
+          <p style="color: #ffd700; margin: 0;">aspire</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Count Display -->
+  <div style="text-align: center; margin-top: 3rem; padding: 1rem; background: rgba(0,0,0,0.5); border-radius: 15px; display: inline-block; position: relative; left: 50%; transform: translateX(-50%); border: 2px solid #ffd700;">
+    <h2 style="color: #ffd700; margin: 0;">Trusted by <span style="font-size: 2rem;">30+</span> Industry Leaders</h2>
+  </div>
+</section>
+   
+  
+    <!-- Testimonials Section -->
+    <section class="py-20 premium-gradient relative">
+        <div class="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black to-transparent"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block px-4 py-1 border-l-4 border-yellow-400 bg-black/50 mb-4">
+                    <p class="text-yellow-400 font-medium">TESTIMONIALS</p>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">What Our <span class="text-yellow-400">Clients</span> Say</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">Don't just take our word for it - hear from some of our satisfied clients.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-black/20 backdrop-blur-sm rounded-xl p-8 border border-gray-800 hover-scale" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex mb-6">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic">"AVOW exceeded our expectations with their meticulous planning and flawless execution of our corporate event. Their attention to detail and responsive communication made the entire process seamless."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-yellow-400/20 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-yellow-400 font-semibold text-xl">VK</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Vivek Kumar</h4>
+                            <p class="text-gray-400 text-sm">Marketing Director, TechSphere</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-black/20 backdrop-blur-sm rounded-xl p-8 border border-gray-800 hover-scale" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex mb-6">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic">"The digital marketing strategy developed by AVOW transformed our online presence. Their content creation and social media management have significantly increased our engagement and lead generation."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-yellow-400/20 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-yellow-400 font-semibold text-xl">AR</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Ananya Reddy</h4>
+                            <p class="text-gray-400 text-sm">CEO, Innovate Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-black/20 backdrop-blur-sm rounded-xl p-8 border border-gray-800 hover-scale" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex mb-6">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star-half-alt text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic">"AVOW's management of our sports tournament was impressive. From venue coordination to participant management, they handled everything professionally and created a memorable experience for all involved."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-yellow-400/20 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-yellow-400 font-semibold text-xl">RP</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Rajan Patel</h4>
+                            <p class="text-gray-400 text-sm">Sports Director, University Athletics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black relative">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="inline-block px-4 py-1 border-l-4 border-yellow-400 bg-black/50 mb-4">
+                        <p class="text-yellow-400 font-medium">GET IN TOUCH</p>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Let's Create <span class="text-yellow-400">Something Amazing</span> Together</h2>
+                    <p class="text-gray-300 mb-8">Ready to elevate your next event or digital marketing strategy? Contact us today to discover how AVOW can transform your vision into reality.</p>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-yellow-400/20 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-map-marker-alt text-yellow-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Our Location</h4>
+                                <p class="text-gray-400">123 Business Avenue, Chennai, Tamil Nadu, India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-yellow-400/20 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-envelope text-yellow-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Email Us</h4>
+                                <p class="text-gray-400">info@avowevents.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-yellow-400/20 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-phone-alt text-yellow-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Call Us</h4>
+                                <p class="text-gray-400">+91 98765 43210</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-yellow-400/20 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-black transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-yellow-400/20 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-black transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-yellow-400/20 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-black transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-yellow-400/20 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-black transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <form class="bg-black/40 backdrop-blur-sm rounded-xl p-8 border border-gray-800">
+                        <h3 class="text-2xl font-semibold mb-6 text-yellow-400">Send us a message</h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-gray-300 mb-2">Name</label>
+                                <input type="text" id="name" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-yellow-400 transition">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-300 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-yellow-400 transition">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-300 mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-yellow-400 transition">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-300 mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-yellow-400 transition"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-yellow-400 text-black font-semibold rounded-lg px-6 py-4 hover:bg-yellow-300 transition flex items-center justify-center">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-yellow-500/20">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="#" class="flex items-center mb-6">
+                        <div class="relative h-12 w-12 bg-yellow-400 rounded-full overflow-hidden flex items-center justify-center">
+                            <span class="text-black text-2xl font-bold">A</span>
+                        </div>
+                        <span class="ml-2 text-yellow-400 text-2xl font-bold tracking-wider">AVOW</span>
+                    </a>
+                    <p class="text-gray-400 mb-6">Elevating events and digital presence with innovation, precision, and creativity.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-gray-400 hover:text-yellow-400 transition">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-yellow-400 transition">Our Services</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-yellow-400 transition">Events</a></li>
+                        <li><a href="#what-we-do" class="text-gray-400 hover:text-yellow-400 transition">Our Process</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-yellow-400 transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-6">Our Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition">Event Management</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition">Digital Marketing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition">Content Creation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition">Sponsorship Management</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition">Brand Strategy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-6">Contact Info</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-yellow-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">123 Business Avenue, Chennai, Tamil Nadu, India</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-yellow-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">info@avowevents.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt text-yellow-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">+91 98765 43210</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-500">&copy; 2025 AVOW Events & Digital Marketing. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+
+             // Progress bar functionality
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+            
+            // Navbar auto-layout (shrink on scroll)
+            const navbar = document.getElementById('main-nav');
+            if (winScroll > 50) {
+                navbar.classList.add('h-16', 'bg-black/90');
+                navbar.classList.remove('h-20', 'bg-black/70');
+            } else {
+                navbar.classList.remove('h-16', 'bg-black/90');
+                navbar.classList.add('h-20', 'bg-black/70');
+            }
+        });
+
+        // Mobile menu functionality
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', function() {
+            mobileMenu.classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeMenuHandler() {
+            mobileMenu.classList.add('translate-x-full');
+            document.body.style.overflow = 'auto';
+        }
+
+        closeMenu.addEventListener('click', closeMenuHandler);
+        
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMenuHandler);
+        });
+
+        // Handle resize events for responsive behavior
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                // Only create connections on desktop
+                if (window.innerWidth > 768) {
+                  const center = document.querySelector('.center-circle');
+                  const items = document.querySelectorAll('.service-item');
+                  const svg = document.querySelector('.connection-container svg');
+                  
+                  // Get element center point coordinates
+                  function getElementCenter(element) {
+                    const rect = element.getBoundingClientRect();
+                    const containerRect = document.querySelector('.compass-container').getBoundingClientRect();
+                    
+                    return {
+                      x: rect.left + rect.width/2 - containerRect.left,
+                      y: rect.top + rect.height/2 - containerRect.top
+                    };
+                  }
+                  
+                  // Create connections with proper curve paths
+                  const centerPoint = getElementCenter(center);
+                  
+                  items.forEach((item, index) => {
+                    const itemPoint = getElementCenter(item);
+                    
+                    // Calculate control points for curved line
+                    const midX = (centerPoint.x + itemPoint.x) / 2;
+                    const midY = (centerPoint.y + itemPoint.y) / 2;
+                    
+                    // Add slight curve offset based on position
+                    const offsetX = (itemPoint.y - centerPoint.y) * 0.2;
+                    const offsetY = -(itemPoint.x - centerPoint.x) * 0.2;
+                    
+                    // Create path
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path.setAttribute('class', 'connection-line');
+                    path.setAttribute('d', `M${centerPoint.x},${centerPoint.y} Q${midX + offsetX},${midY + offsetY} ${itemPoint.x},${itemPoint.y}`);
+                    svg.appendChild(path);
+                    
+                    // Add inner dot at center of service item
+                    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    dot.setAttribute('cx', itemPoint.x);
+                    dot.setAttribute('cy', itemPoint.y);
+                    dot.setAttribute('r', '4');
+                    dot.setAttribute('fill', '#FFCC00');
+                    dot.setAttribute('filter', 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))');
+                    svg.appendChild(dot);
+                    
+                    // Add hover effects
+                    item.addEventListener('mouseenter', () => {
+                      path.style.strokeWidth = '3';
+                      path.style.stroke = '#ffdd33';
+                      path.style.filter = 'drop-shadow(0 0 8px rgba(255,204,0,0.6))';
+                      path.style.transition = 'all 0.3s ease';
+                      
+                      // Animate the line
+                      if (!path.hasAttribute('stroke-dashoffset')) {
+                        const length = path.getTotalLength();
+                        path.style.strokeDasharray = length;
+                        path.style.strokeDashoffset = length;
+                        path.getBoundingClientRect(); // Force reflow
+                        path.style.transition = 'stroke-dashoffset 0.6s ease-in-out';
+                        path.style.strokeDashoffset = '0';
+                      }
+                    });
+                    
+                    item.addEventListener('mouseleave', () => {
+                      path.style.strokeWidth = '2';
+                      path.style.stroke = '#FFCC00';
+                      path.style.filter = 'drop-shadow(0 2px 3px rgba(0,0,0,0.1))';
+                    });
+                  });
+                  
+                  // Add pulsing animation to randomly selected items
+                  function startRandomPulse() {
+                    const randomIndex = Math.floor(Math.random() * items.length);
+                    const randomItem = items[randomIndex];
+                    
+                    randomItem.style.animation = 'pulse 2s';
+                    
+                    setTimeout(() => {
+                      randomItem.style.animation = '';
+                      setTimeout(startRandomPulse, 2000);
+                    }, 2000);
+                  }
+                  
+                  startRandomPulse();
+                }
+                
+                // Add hover effect to center circle
+                const center = document.querySelector('.center-circle');
+                center.addEventListener('mouseenter', () => {
+                  document.querySelectorAll('.connection-line').forEach(line => {
+                    line.style.strokeWidth = '3';
+                    line.style.strokeDasharray = '8';
+                    line.style.animation = 'dash 30s linear infinite';
+                  });
+                });
+                
+                center.addEventListener('mouseleave', () => {
+                  document.querySelectorAll('.connection-line').forEach(line => {
+                    line.style.strokeWidth = '2';
+                    line.style.animation = '';
+                  });
+                });
+                
+                // Add keyframes for dash animation
+                const style = document.createElement('style');
+                style.innerHTML = `
+                  @keyframes dash {
+                    to {
+                      stroke-dashoffset: 1000;
+                    }
+                  }
+                `;
+                document.head.appendChild(style);
+              });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                // Counter animation
+                const counters = document.querySelectorAll('.counter-value');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000; // ms
+                    const step = Math.ceil(target / (duration / 16)); // 60fps
+                    let current = 0;
+                    
+                    const updateCounter = () => {
+                        current += step;
+                        if (current >= target) {
+                            counter.textContent = target;
+                        } else {
+                            counter.textContent = current;
+                            requestAnimationFrame(updateCounter);
+                        }
+                    };
+                    
+                    const observer = new IntersectionObserver(entries => {
+                        if (entries[0].isIntersecting) {
+                            requestAnimationFrame(updateCounter);
+                            observer.disconnect();
+                        }
+                    }, { threshold: 0.5 });
+                    
+                    observer.observe(counter);
+                });
+            });
+            
+           
+            
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+            
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+            
+            (function() {
+                function handleResize() {
+                  var wheelContainer = document.querySelector('.compass-wrapper svg');
+                  var mobileServices = document.querySelector('.mobile-services');
+                  
+                  if (window.innerWidth < 768) {
+                    wheelContainer.style.display = 'none';
+                    mobileServices.style.display = 'block';
+                  } else {
+                    wheelContainer.style.display = 'block';
+                    mobileServices.style.display = 'none';
+                  }
+                }
+                
+                // Initial check
+                handleResize();
+                
+                // Add resize listener
+                window.addEventListener('resize', handleResize);
+              })();
+            // Sticky Navigation
+            const nav = document.getElementById('main-nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    nav.classList.add('sticky-nav');
+                } else {
+                    nav.classList.remove('sticky-nav');
+                }
+            });
+            
+            // Progress Bar
+            const progressBar = document.getElementById('progress-bar');
+            window.addEventListener('scroll', () => {
+                const totalHeight = document.body.scrollHeight - window.innerHeight;
+                const progress = (window.scrollY / totalHeight) * 100;
+                progressBar.style.width = `${progress}%`;
+            });
+        });
+    </script>
+</body>
+</html>
